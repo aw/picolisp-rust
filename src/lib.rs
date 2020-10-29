@@ -1,4 +1,5 @@
 use std::os::raw::*;
+use std::ffi::CStr;
 
 #[repr(C)]
 #[derive(Debug)]
@@ -30,8 +31,19 @@ pub extern "C" fn extract(c_struct: *mut PilStruct) -> i32 {
             true => return -1,
             _ => {},
         }
-        println!("Received struct: {:#?}", &*c_struct);
-        std::ptr::write(c_struct, newstruct)
+        let r_struct = &*c_struct;
+        println!("Received struct: {:#?}", &r_struct);
+
+        // tests
+        assert_eq!(r_struct.byte1, 32);
+        assert_eq!(r_struct.byte2, 33);
+        assert_eq!(r_struct.character1, 67);
+        assert_eq!(r_struct.character2, 68);
+        assert_eq!(r_struct.int, -1);
+        assert_eq!(r_struct.long, 1);
+        assert_eq!(r_struct.array, [1,2,3,4,5,6,7,8]);
+
+        std::ptr::write(c_struct, newstruct);
     }
     0 // return code
 }
