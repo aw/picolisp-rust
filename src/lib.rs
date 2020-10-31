@@ -1,5 +1,4 @@
 use std::os::raw::*;
-use std::ffi::CStr;
 
 #[repr(C)]
 #[derive(Debug)]
@@ -26,11 +25,11 @@ pub extern "C" fn extract(c_struct: *mut PilStruct) -> i32 {
         string: "pilrust\x00".as_ptr(),
         array: [80, 105, 99, 111, 76, 105, 115, 112],
     };
+    match c_struct.is_null() {
+        true => return -1,
+        _ => {},
+    }
     unsafe {
-        match c_struct.is_null() {
-            true => return -1,
-            _ => {},
-        }
         let r_struct = &*c_struct;
         println!("Received struct: {:#?}", &r_struct);
 
