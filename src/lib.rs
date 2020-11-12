@@ -25,10 +25,7 @@ pub extern "C" fn extract(c_struct: *mut PilStruct) -> i32 {
         string: "pilrust\x00".as_ptr(),
         array: [80, 105, 99, 111, 76, 105, 115, 112],
     };
-    match c_struct.is_null() {
-        true => return -1,
-        _ => {},
-    }
+    if let true = c_struct.is_null() { return -1 };
     unsafe {
         let r_struct = &*c_struct;
         println!("Received struct: {:#?}", &r_struct);
