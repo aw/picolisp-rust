@@ -3,7 +3,7 @@ name = "pilrust"
 version = "0.1.0"
 authors = ["Alex Williams, On-Prem <license@on-premises.com>"]
 edition = "2018"
-license = "MIT"
+license = "0BSD"
 
 [lib]
 crate-type = ["cdylib"]
