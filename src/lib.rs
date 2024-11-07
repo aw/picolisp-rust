@@ -22,7 +22,7 @@ pub extern "C" fn extract(c_struct: *mut PilStruct) -> i32 {
         character2: 'B' as c_char,
         int: 65535,
         long: 9223372036854775807,
-        string: "pilrust\x00".as_ptr(),
+        string: "pilrust\x00".as_ptr() as *const _,
         array: [80, 105, 99, 111, 76, 105, 115, 112],
     };
     if let true = c_struct.is_null() { return -1 };

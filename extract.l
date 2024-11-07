@@ -1,6 +1,6 @@
 #!/usr/bin/env pil
 
-(setq P (native "@" "malloc" 'N 32))
+(setq P (native "@" "malloc" 'P 32))
 
 # initialize the struct
 (struct P 'N
